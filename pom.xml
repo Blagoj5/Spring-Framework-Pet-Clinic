@@ -4,7 +4,7 @@
 
     <groupId>baze.springframework</groupId>
     <artifactId>sf-pet-clinic</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
 
     <name>sf-pet-clinic</name>
     <description>The Spring Framework Pet Clinic Project</description>
@@ -47,7 +47,7 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:Blagoj5/Spring-Framework-Pet-Clinic.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>sf-pet-clinic-0.0.3</tag>
   </scm>
 
 </project>
