@@ -1,6 +1,6 @@
 package baze.springframework.sfpetclinic.model;
 
-public class PetType {
+public class PetType extends BaseEntity{
 
     String name;
 
