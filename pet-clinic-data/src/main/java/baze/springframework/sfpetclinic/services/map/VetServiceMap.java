@@ -1,6 +1,8 @@
 package baze.springframework.sfpetclinic.services.map;
 
+import baze.springframework.sfpetclinic.model.Speciality;
 import baze.springframework.sfpetclinic.model.Vet;
+import baze.springframework.sfpetclinic.services.SpecialityService;
 import baze.springframework.sfpetclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,12 @@ import java.util.Set;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+
+    private final SpecialityService specialityService;
+
+    public VetServiceMap(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
 
     @Override
     public Set<Vet> findAll() {
@@ -21,6 +29,14 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet object) {
+        if (object.getSpecialities() != null && object.getSpecialities().size() > 0) { // TWO WAYS TO MAKE THE CONDITIONAL, ALSO CAN BE WITH .isEmpty()
+            object.getSpecialities().forEach(speciality -> {
+                if (speciality.getId() == null){
+                    Speciality saveSpeciality = specialityService.save(speciality);
+                    speciality.setId(saveSpeciality.getId()); // IN CASE THE ID DOESNT ADD UP BECAUSE ITS ITERATOR (IT should work without it)
+                }
+            });
+        }
         return super.save(object);
     }
 
